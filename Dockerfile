@@ -10,5 +10,6 @@ WORKDIR '/app'
 COPY dist/apps/ui-showcase .
 
 FROM nginx
+EXPOSE 80
 # Copy the build folder generated from the container
 COPY --from=builder /app /usr/share/nginx/html
