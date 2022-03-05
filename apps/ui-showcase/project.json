@@ -1,0 +1,94 @@
+{
+  "projectType": "application",
+  "root": "apps/ui-showcase",
+  "sourceRoot": "apps/ui-showcase/src",
+  "prefix": "pfeedback-ws",
+  "targets": {
+    "build": {
+      "executor": "@angular-devkit/build-angular:browser",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/apps/ui-showcase",
+        "index": "apps/ui-showcase/src/index.html",
+        "main": "apps/ui-showcase/src/main.ts",
+        "polyfills": "apps/ui-showcase/src/polyfills.ts",
+        "tsConfig": "apps/ui-showcase/tsconfig.app.json",
+        "inlineStyleLanguage": "scss",
+        "assets": [
+          "apps/ui-showcase/src/favicon.ico",
+          "apps/ui-showcase/src/assets"
+        ],
+        "styles": ["apps/ui-showcase/src/styles.scss"],
+        "scripts": []
+      },
+      "configurations": {
+        "production": {
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "500kb",
+              "maximumError": "1mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "2kb",
+              "maximumError": "4kb"
+            }
+          ],
+          "fileReplacements": [
+            {
+              "replace": "apps/ui-showcase/src/environments/environment.ts",
+              "with": "apps/ui-showcase/src/environments/environment.prod.ts"
+            }
+          ],
+          "outputHashing": "all"
+        },
+        "development": {
+          "buildOptimizer": false,
+          "optimization": false,
+          "vendorChunk": true,
+          "extractLicenses": false,
+          "sourceMap": true,
+          "namedChunks": true
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "serve": {
+      "executor": "@angular-devkit/build-angular:dev-server",
+      "configurations": {
+        "production": {
+          "browserTarget": "ui-showcase:build:production"
+        },
+        "development": {
+          "browserTarget": "ui-showcase:build:development"
+        }
+      },
+      "defaultConfiguration": "development"
+    },
+    "extract-i18n": {
+      "executor": "@angular-devkit/build-angular:extract-i18n",
+      "options": {
+        "browserTarget": "ui-showcase:build"
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "apps/ui-showcase/src/**/*.ts",
+          "apps/ui-showcase/src/**/*.html"
+        ]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/apps/ui-showcase"],
+      "options": {
+        "jestConfig": "apps/ui-showcase/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}
