@@ -5,7 +5,7 @@ COPY package.json .
 COPY package-lock.json .
 COPY decorate-angular-cli.js .
 
-RUN npm install
+RUN npm ci
 COPY . .
 RUN npm run build
 
